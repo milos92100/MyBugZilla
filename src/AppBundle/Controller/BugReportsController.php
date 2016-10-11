@@ -21,7 +21,8 @@ class BugReportsController extends BaseController
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+
+
         return $this->renderMyView(':app:bug_reports.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..'),
         ]);
@@ -33,7 +34,7 @@ class BugReportsController extends BaseController
      */
     public function reportNewBugAction()
     {
-        // replace this example code with whatever you need
+
         return $this->renderMyView(':app:new_bug_report.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..'),
         ]);
