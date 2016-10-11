@@ -56,7 +56,6 @@ class BaseController extends Controller
         if ($user->getRole()->isAdmin()) {
             $menu = array(
                 "left_menu" => array(
-                    "Latest" => "/",
                     "Bug Reports" => "bug_reports",
                     "Report Bag" => "new_bug_report",
 
@@ -74,7 +73,6 @@ class BaseController extends Controller
         } else {
             $menu = array(
                 "left_menu" => array(
-                    "Latest" => "/",
                     "Bug Reports" => "bug_reports",
                     "Report Bag" => "new_bug_report",
 

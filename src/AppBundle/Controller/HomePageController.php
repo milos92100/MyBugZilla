@@ -13,8 +13,9 @@ class HomePageController extends BaseController
      */
     public function indexAction(Request $request)
     {
+
         // replace this example code with whatever you need
-        return $this->renderMyView('default/index.html.twig', [
+        return $this->renderMyView(':app:home.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..'),
         ]);
     }
