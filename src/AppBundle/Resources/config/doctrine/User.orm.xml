@@ -1,0 +1,27 @@
+<doctrine-mapping>
+    <entity name="AppBundle\Entity\User" table="users">
+        <id name="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="username" type="string" initial-value=""/>
+        <field name="password" type="string" initial-value=""/>
+        <field name="email" type="string" initial-value=""/>
+        <field name="firstName" type="string" initial-value=""/>
+        <field name="lastName" type="string" initial-value=""/>
+        <field name="lastUpdated" type="datetime" initial-value=""/>
+        <field name="active" type="integer" initial-value="1"/>
+        <field name="timestamp" type="datetime" initial-value=""/>
+        <many-to-one field="role" target-entity="AppBundle\Entity\UserRole">
+            <join-column name="user_role_id" referenced-column-name="id"/>
+        </many-to-one>
+        <unique-constraints>
+            <unique-constraint columns="username" name="usernameidx"/>
+            <unique-constraint columns="email" name="emailidx"/>
+        </unique-constraints>
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="beforePersist"/>
+            <lifecycle-callback type="postPersist" method="beforeUpdate"/>
+        </lifecycle-callbacks>
+
+    </entity>
+</doctrine-mapping>

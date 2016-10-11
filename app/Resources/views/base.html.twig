@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Home{% endblock %}</title>
+    {% stylesheets
+    'public/css/bootstrap.min.css'
+    'public/css/navbar-fixed-top.css'
+    'public/css/mprogress.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% block navbar %}
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="color:darkred;" href="/">MyBugZilla</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    {% for menu_itme_name, menu_item_url in menu.left_menu %}
+                        <li {% if app.request.get('_route') == menu_item_url %} class="active"{% endif %} ><a
+                                    href="{{ menu_item_url }}">{{ menu_itme_name }}</a></li>
+                    {% endfor %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% for menu_itme_name, menu_item_url in menu.right_menu %}
+                        <li {% if app.request.get('_route') == menu_item_url %} class="active"{% endif %} ><a
+                                    href="{{ menu_item_url }}">{{ menu_itme_name }}</a></li>
+                    {% endfor %}
+                    {% if menu.signout == true %}
+                        <li><a href="" onclick="signout()">Sign out</a></li>
+                    {% endif %}
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+        <div style="height: 3px; margin-top: 3px;" id="bug_zilla_progress_div"></div>
+    </nav>
+
+
+{% endblock %}
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+{% javascripts
+'public/js/common/jquery.js'
+'public/js/common/bootstrap.min.js'
+'public/js/common/bootbox.min.js'
+'public/js/common/signout.js'
+'public/js/common/mprogress.min.js'
+'public/js/common/global_progress_bar.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% block javasript %}{% endblock %}
+</body>
+</html>

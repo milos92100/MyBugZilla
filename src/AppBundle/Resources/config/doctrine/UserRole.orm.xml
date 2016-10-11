@@ -1,0 +1,11 @@
+<doctrine-mapping>
+    <entity name="AppBundle\Entity\UserRole" table="user_role">
+        <id name="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="name" type="string" initial-value=""/>
+        <unique-constraints>
+            <unique-constraint columns="name" name="nameidx"/>
+        </unique-constraints>
+    </entity>
+</doctrine-mapping>
