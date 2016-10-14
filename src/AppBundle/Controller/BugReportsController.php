@@ -23,8 +23,84 @@ class BugReportsController extends BaseController
     {
 
 
+        $reports = array(
+            array(
+                "title" => "Some title",
+                "content" => "dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de."
+            ),
+            array(
+                "title" => "Some title",
+                "content" => "dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de."
+            ),
+            array(
+                "title" => "Some title",
+                "content" => "dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de."
+            ),
+            array(
+                "title" => "Some title",
+                "content" => "dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de."
+            ),
+            array(
+                "title" => "Some title",
+                "content" => "dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de."
+            ),
+            array(
+                "title" => "Some title",
+                "content" => "dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de.dsadasdasdasdadasdadad da dada das dasd asdasdasdsd
+                dasdasdssssssddddddddddddd asdasdasdasdiw dnjwoidmiaw mjdawi dwad
+                dasdmoaimdpowmdow,do wd  dosidslo dsod ,sdw  dospdlsd sdsd w de."
+            )
+        );
+
         return $this->renderMyView(':app:bug_reports.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..'),
+            'reports' => $reports
         ]);
     }
 

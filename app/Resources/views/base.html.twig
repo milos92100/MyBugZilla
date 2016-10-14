@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
 
+
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
 {% block navbar %}
     <!-- Fixed navbar -->
+
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -39,23 +41,44 @@
                         <li {% if app.request.get('_route') == menu_item_url %} class="active"{% endif %} ><a
                                     href="{{ menu_item_url }}">{{ menu_itme_name }}</a></li>
                     {% endfor %}
-                    {% if menu.signout == true %}
-                        <li><a href="" onclick="signout()">Sign out</a></li>
+
+
+                    {% if menu.profile == true %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false"
+                               style="font-weight: bold;">{{ user.firstName }} {{ user.lastName }}<span
+                                        class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                {% for menu_itme_name, menu_item_url in menu.profile_menu %}
+                                    <li><a href="{{ menu_item_url }}"><i class="icon-arrow-up"></i>{{ menu_itme_name }}
+                                        </a></li>
+                                {% endfor %}
+                                <li role="separator" class="divider"></li>
+                                <li><a href="" onclick="signout()">Sign out</a></li>
+                            </ul>
+                        </li>
                     {% endif %}
+
                 </ul>
             </div><!--/.nav-collapse -->
+
         </div>
-        <div style="height: 3px; margin-top: 3px;" id="bug_zilla_progress_div"></div>
+
     </nav>
+
+    <div style="height: 3px; margin-top: 0px;" id="bug_zilla_progress_div"></div>
 
 
 {% endblock %}
-<div class="container">
+
+<div id="content" class="container">
     {% block body %}{% endblock %}
 </div>
-<footer class="footer navbar-fixed-bottom" style="height: 40px; background-color: #f8f8f8;">
+<footer class="footer navbar-fixed-bottom" style="height: 40px; background-color: #f8f8f8; ">
     <div class="container">
-        <p class="text-muted text-center" style="padding-top: 10px">(c) 2016 MyBugZilla. All Rights Reserved</p>
+        <p class="text-muted text-center" style="padding-top: 10px; color: darkred;">(c) 2016 MyBugZilla. All Rights
+            Reserved</p>
     </div>
 </footer>
 {% javascripts

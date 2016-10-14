@@ -39,6 +39,7 @@ class BaseController extends Controller
         return parent::render($view,
             array_merge($parameters, [
                 "menu" => $this->getMenuItems($this->getLoggedUser()),
+                "user" => $this->getLoggedUser()
             ]),
             $response);
     }
@@ -49,7 +50,7 @@ class BaseController extends Controller
             return array(
                 "left_menu" => array(),
                 "right_menu" => array(),
-                "signout" => false,
+                "profile" => false,
             );
         }
 
@@ -63,11 +64,15 @@ class BaseController extends Controller
                 ),
                 "right_menu" => array(
                     "Help" => "help",
-                    "My Profile" => "profile",
                     "About us" => "about_us",
                     "Admin Panel" => "admin_panel",
                 ),
-                "signout" => true
+                "profile_menu" => array(
+                    "My Profile" => "user_profile",
+                    "Preference" => "user_preference"
+                ),
+                "profile" => true,
+
             );
 
         } else {
@@ -80,10 +85,14 @@ class BaseController extends Controller
                 ),
                 "right_menu" => array(
                     "Help" => "help",
-                    "My Profile" => "profile",
                     "About us" => "about_us",
                 ),
-                "signout" => true
+                "profile_menu" => array(
+                    "My Profile" => "user_profile",
+                    "Preference" => "user_preference"
+                ),
+                "profile" => true,
+
             );
         }
 
