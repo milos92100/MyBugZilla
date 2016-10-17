@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Login Page{% endblock %}
 {% block stylesheets %}
-    {% stylesheets  'public/css/login.css' %}
+    {% stylesheets  filter='cssrewrite' 'public/css/login.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
 {% endblock %}
@@ -23,6 +23,14 @@
 
     </div> <!-- /container -->
 
+{% endblock %}
+{% block footer %}
+    <footer class="footer  navbar-fixed-bottom" style="height: 40px; background-color: #f8f8f8; ">
+        <div class="container">
+            <p class="text-muted text-center" style="padding-top: 10px; color: black;">(c) 2016 MyBugZilla. All Rights
+                Reserved</p>
+        </div>
+    </footer>
 {% endblock %}
 {% block javasript %}
     {% javascripts 'public/js/login.js' %}

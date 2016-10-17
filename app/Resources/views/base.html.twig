@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <title>{% block title %}Home{% endblock %}</title>
-    {% stylesheets
+    {% stylesheets filter='cssrewrite'
     'public/css/bootstrap.min.css'
     'public/css/navbar-fixed-top.css'
     'public/css/mprogress.min.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
+    <link rel="stylesheet" href="{{ asset_url }}" media="screen"/>
     {% endstylesheets %}
 
 
@@ -27,28 +27,34 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" style="color:darkred;" href="/">MyBugZilla</a>
+                <a class="navbar-brand" style="font-weight: bold" href="/">
+
+
+                    MyBugZilla</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     {% for menu_itme_name, menu_item_url in menu.left_menu %}
-                        <li {% if app.request.get('_route') == menu_item_url %} class="active"{% endif %} ><a
-                                    href="{{ menu_item_url }}">{{ menu_itme_name }}</a></li>
+                        <li {% if (('/' ~ app.request.get('_route') in menu_item_url) or (menu_item_url in  '/' ~ app.request.get('_route'))) %} class="active"{% endif %} >
+                            <a
+                                    href="{{ menu_item_url }}"><i class="icon-home icon-2x"></i>{{ menu_itme_name }}</a>
+                        </li>
                     {% endfor %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% for menu_itme_name, menu_item_url in menu.right_menu %}
-                        <li {% if app.request.get('_route') == menu_item_url %} class="active"{% endif %} ><a
-                                    href="{{ menu_item_url }}">{{ menu_itme_name }}</a></li>
+
+                        <li {% if (('/' ~ app.request.get('_route') in menu_item_url) or (menu_item_url in  '/' ~ app.request.get('_route'))) %} class="active"{% endif %} >
+                            <a href="{{ menu_item_url }}">{{ menu_itme_name }}</a></li>
                     {% endfor %}
 
 
                     {% if menu.profile == true %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false"
-                               style="font-weight: bold;">{{ user.firstName }} {{ user.lastName }}<span
-                                        class="caret"></span></a>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                aria-haspopup="true" aria-expanded="false"
+                                                style="font-weight: bold;">
+                                {{ user.firstName }} {{ user.lastName }}
+                                <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 {% for menu_itme_name, menu_item_url in menu.profile_menu %}
                                     <li><a href="{{ menu_item_url }}"><i class="icon-arrow-up"></i>{{ menu_itme_name }}
@@ -67,7 +73,7 @@
 
     </nav>
 
-    <div style="height: 3px; margin-top: 0px;" id="bug_zilla_progress_div"></div>
+    <div style="height: 4px; margin-top: 0px;" id="bug_zilla_progress_div"></div>
 
 
 {% endblock %}
@@ -75,12 +81,15 @@
 <div id="content" class="container">
     {% block body %}{% endblock %}
 </div>
-<footer class="footer navbar-fixed-bottom" style="height: 40px; background-color: #f8f8f8; ">
-    <div class="container">
-        <p class="text-muted text-center" style="padding-top: 10px; color: darkred;">(c) 2016 MyBugZilla. All Rights
-            Reserved</p>
-    </div>
-</footer>
+<!-- navbar-fixed-bottom -->
+{% block footer %}
+    <footer class="footer" style="height: 40px; background-color: #f8f8f8;">
+        <div class="container">
+            <p class="text-muted text-center" style="padding-top: 10px; color: black;">(c) 2016 MyBugZilla. All Rights
+                Reserved</p>
+        </div>
+    </footer>
+{% endblock %}
 {% javascripts
 'public/js/common/jquery.js'
 'public/js/common/bootstrap.min.js'

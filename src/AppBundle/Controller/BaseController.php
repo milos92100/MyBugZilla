@@ -1,9 +1,11 @@
 <?php
+declare(strict_types = 1);
 
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
@@ -54,22 +56,23 @@ class BaseController extends Controller
             );
         }
 
+
         if ($user->getRole()->isAdmin()) {
             $menu = array(
                 "left_menu" => array(
-                    "Bug Reports" => "bug_reports",
-                    "Report Bag" => "new_bug_report",
+                    "Bug Reports" => "/bug_reports",
+                    "Report Bag" => "/new_bug_report",
 
 
                 ),
                 "right_menu" => array(
-                    "Help" => "help",
-                    "About us" => "about_us",
-                    "Admin Panel" => "admin_panel",
+                    "Help" => "/help",
+                    "About us" => "/about_us",
+                    "Admin Panel" => "/admin_panel",
                 ),
                 "profile_menu" => array(
-                    "My Profile" => "user_profile",
-                    "Preference" => "user_preference"
+                    "My Profile" => "/user_profile",
+                    "Preference" => "/user_preference"
                 ),
                 "profile" => true,
 
@@ -78,18 +81,18 @@ class BaseController extends Controller
         } else {
             $menu = array(
                 "left_menu" => array(
-                    "Bug Reports" => "bug_reports",
-                    "Report Bag" => "new_bug_report",
+                    "Bug Reports" => "/bug_reports",
+                    "Report Bag" => "/new_bug_report",
 
 
                 ),
                 "right_menu" => array(
-                    "Help" => "help",
-                    "About us" => "about_us",
+                    "Help" => "/help",
+                    "About us" => "/about_us",
                 ),
                 "profile_menu" => array(
-                    "My Profile" => "user_profile",
-                    "Preference" => "user_preference"
+                    "My Profile" => "/user_profile",
+                    "Preference" => "/user_preference"
                 ),
                 "profile" => true,
 
