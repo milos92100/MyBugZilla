@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}Admin Panel{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block body %}
+    <H1>Admin Panel</H1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for user in result %}
+            <td>{{ user.username }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <button class="btn btn-danger" style="float: right; margin-right: 5px;">Deactivate</button>
+                <button class="btn btn-warning" style="float: right; margin-right: 5px;">Add Ban</button>
+                <button class="btn btn-default" style="float: right; margin-right: 5px;">Edit</button>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {{ include('app/template/pager.html.twig', { 'pager_url': '/admin_panel/' , 'total_pages':total_pages, 'current_page' : current_page}) }}
+{% endblock %}
+{% block javasript %}
+{% endblock %}
