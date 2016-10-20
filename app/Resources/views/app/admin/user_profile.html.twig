@@ -1,0 +1,26 @@
+{% extends 'app/admin/admin.html.twig' %}
+{% block title %}User Profile{% endblock %}
+{% block admin_stylesheets %}
+    {% stylesheets  'public/css/register.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}
+
+{% block admin_body %}
+    {% if data.success == false %}
+        <div class="alert alert-danger">
+            <strong>Failure</strong> {{ data.msg }}
+        </div>
+    {% else %}
+
+        <h1>{{ data.selected_user.firstName ~ ' ' ~ data.selected_user.lastName }}</h1>
+
+    {% endif %}
+
+{% endblock %}
+{% block admin_javasript %}
+    {% javascripts
+    'public/js/add_user.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
