@@ -1,35 +1,61 @@
 {% extends 'base.html.twig' %}
 {% block title %}Admin Panel{% endblock %}
-{% block stylesheets %}{% endblock %}
-{% block body %}
-    <H1>Admin Panel</H1>
+{% block stylesheets %}
+    {% stylesheets  filter='cssrewrite' 'public/css/easy-autocomplete.min.css' 'public/css/easy-autocomplete.themes.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+    {% block admin_stylesheets %}
+    {% endblock %}
+{% endblock %}
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Username</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            {% for user in result %}
-            <td>{{ user.username }}</td>
-            <td>{{ user.firstName }}</td>
-            <td>{{ user.lastName }}</td>
-            <td>{{ user.email }}</td>
-            <td>
-                <button class="btn btn-danger" style="float: right; margin-right: 5px;">Deactivate</button>
-                <button class="btn btn-warning" style="float: right; margin-right: 5px;">Add Ban</button>
-                <button class="btn btn-default" style="float: right; margin-right: 5px;">Edit</button>
-            </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {{ include('app/template/pager.html.twig', { 'pager_url': '/admin_panel/' , 'total_pages':total_pages, 'current_page' : current_page}) }}
+{% block body %}
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/admin_panel/users">Admin Panel</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                {% for menu_itme_name, menu_item_url in menu.admin_menu.left_menu %}
+                    <li {% if (('/' ~ app.request.uri in menu_item_url) or (menu_item_url in  '/' ~ app.request.uri)) %} class="active"{% endif %} >
+                        <a
+                                href="{{ menu_item_url }}"><i class="icon-home icon-2x"></i>{{ menu_itme_name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" id="user-provider-remote" class="form-control search-query" placeholder="Search">
+                </div>
+                <button type="button" class="btn btn-default" onclick="viewUserProfile()">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                {% for menu_itme_name, menu_item_url in menu.admin_menu.right_menu %}
+                    <li {% if (('/' ~ app.request.uri in menu_item_url) or (menu_item_url in  '/' ~ app.request.uri)) %} class="active"{% endif %} >
+                        <a
+                                href="{{ menu_item_url }}"><i class="icon-home icon-2x"></i>{{ menu_itme_name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+    <div class="row" style="padding-top: 10px;">
+        {% block admin_body %}{% endblock %}
+    </div>
 {% endblock %}
 {% block javasript %}
+    {% javascripts
+    'public/js/lib/jquery.easy-autocomplete.min.js' 'public/js/admin.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% block admin_javasript %}
+    {% endblock %}
 {% endblock %}

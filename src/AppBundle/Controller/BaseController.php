@@ -70,6 +70,18 @@ class BaseController extends Controller
                     "About us" => "/about_us",
                     "Admin Panel" => "/admin_panel",
                 ),
+                "admin_menu" => array(
+                    "left_menu" => array(
+                        "Users" => "/admin_panel/users",
+                        "Add User" => "/admin_panel/add_user",
+
+                    ),
+                    "right_menu" => array(
+                        "Bans" => "/admin_panel/bans",
+                        "Reports" => "/admin_panel/reports",
+                        "Edit News" => "/admin_panel/news",
+                    ),
+                ),
                 "profile_menu" => array(
                     "My Profile" => "/user_profile",
                     "Preference" => "/user_preference"
