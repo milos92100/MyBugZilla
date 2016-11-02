@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Admin;
 
 
 use AppBundle\AppBundle;
@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Controller\BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use AppBundle\Controller\ListController;
 
 /**
  * Class AdminController
@@ -45,6 +46,7 @@ class AdminController extends ListController
      *     defaults={"page" = 1})
      *
      * @Method({"GET"})
+     * @param $page
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showUsersAction($page)
@@ -69,6 +71,8 @@ class AdminController extends ListController
 
     /**
      * @Route("/admin_panel/view_user_profile/{id}", name="/admin_panel/view_user_profile/")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function viewUserProfileAction($id)
     {
@@ -106,31 +110,21 @@ class AdminController extends ListController
      * @Route("/get_users_by_phrase/{phrase}", name="/get_users_by_phrase",defaults={"phrase" = ""})
      * @Method({"GET"})
      *
+     * @param $phrase
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public
-    function getUsersByPhrase($phrase)
+    public function getUsersByPhrase($phrase)
     {
 
         $response = new JsonResponse();
         try {
 
 
-            $user1 = new \StdClass();
-            $user1->full_name = "Milos Stojanovic";
-            $user1->id = 22;
+            $users = $this->getUserRepository()->findBestMathByUsernameOrNameOrSurname($phrase);
 
-            $user2 = new \StdClass();
-            $user2->full_name = "Pera Peric";
-            $user2->id = 44;
-
-            $user3 = new \StdClass();
-            $user3->full_name = "Mika Mikic";
-            $user3->id = 33;
-
-            $response->setData(array(
-                $user1, $user2, $user3
-            ));
+            $response->setData(
+                $users->toArray()
+            );
 
 
         } catch (\Exception $exception) {
@@ -148,8 +142,7 @@ class AdminController extends ListController
     /**
      * @return UserRepository|null
      */
-    protected
-    function getUserRepository()
+    protected function getUserRepository()
     {
         if (null === $this->userRepository) {
             $this->userRepository = new UserRepository($this->getDoctrine()->getManager());

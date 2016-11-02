@@ -1,6 +1,6 @@
 {% extends 'app/admin/admin.html.twig' %}
 {% block title %}Registration Page{% endblock %}
-{% block stylesheets %}
+{% block admin_stylesheets %}
     {% stylesheets  'public/css/register.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
@@ -75,9 +75,10 @@
         </fieldset>
     </form>
 {% endblock %}
-{% block javasript %}
+{% block admin_javasript %}
     {% javascripts
     'public/js/add_user.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
+

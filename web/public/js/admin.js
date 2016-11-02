@@ -5,8 +5,8 @@ var options = {
         return "/get_users_by_phrase/" + phrase;
     },
 
-    getValue: "full_name",
-    requestDelay: 300,
+    getValue: "full_name_ex",
+    requestDelay: 200,
     list: {
         onChooseEvent: function () {
             selected_user_id = $("#user-provider-remote").getSelectedItemData().id;
@@ -15,14 +15,14 @@ var options = {
         },
         showAnimation: {
             type: "fade",
-            time: 300,
+            time: 100,
             callback: function () {
             }
         },
 
         hideAnimation: {
             type: "slide", //normal|slide|fade
-            time: 300,
+            time: 200,
             callback: function () {
             }
         }

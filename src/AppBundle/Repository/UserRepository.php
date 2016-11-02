@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace AppBundle\Repository;
 
 use AppBundle\Repository\Exception\UserNotFoundException;
+use Doctrine\Common\Collections\Criteria;
 use \Doctrine\ORM\EntityRepository;
 use \Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Entity\User;
@@ -40,6 +41,22 @@ class UserRepository extends EntityRepository
         ), null);
     }
 
+    /**
+     * @param int $id
+     * @return User|null
+     * @throws UserNotFoundException
+     */
+    public function getById(int $id)
+    {
+        $user = $this->findById($id);
+
+        if (null === $user) {
+            throw new UserNotFoundException("User({$id}) not found");
+        }
+
+        return $user;
+    }
+
 
     /**
      *
@@ -60,6 +77,58 @@ class UserRepository extends EntityRepository
         }
 
         return $user;
+    }
+
+    /**
+     * @param $str
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function findBestMathByUsernameOrNameOrSurname($str)
+    {
+
+        $criteria = Criteria::create();
+        $criteria->where(Criteria::expr()->contains("username", $str))
+            ->orWhere(Criteria::expr()->contains("firstName", $str))
+            ->orWhere(Criteria::expr()->contains("lastName", $str));
+
+
+        return $this->matching($criteria);
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function deactivate(int $id)
+    {
+        return $this->setStatus(User::INACTIVE, $id);
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function activate(int $id)
+    {
+        return $this->setStatus(User::ACTIVE, $id);
+    }
+
+    /**
+     * @param int $active
+     * @param int $id
+     * @return mixed
+     */
+    protected function setStatus(int $active, int $id)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $q = $qb->update(User::class, 'u')
+            ->set('u.active', '?active')
+            ->where('u.id = ?id')
+            ->setParameter("active", $active)
+            ->setParameter("id", $id)
+            ->getQuery();
+        return $q->execute();
     }
 
 

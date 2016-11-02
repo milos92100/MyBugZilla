@@ -32,7 +32,7 @@ function login() {
             if (data.success) {
                 bootbox.alert(data.data.message, function () {
                     if (data.data.accessGranted) {
-                        window.location.href = window.location.origin + "/admin_panel/users";
+                        window.location.href = window.location.origin + "/";
                     }
                 });
 

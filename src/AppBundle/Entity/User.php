@@ -224,6 +224,11 @@ class User implements \JsonSerializable
         return $this->active == self::ACTIVE;
     }
 
+    public function getFullName():string
+    {
+        return $this->getFirstName() . " " . $this->getLastName();
+    }
+
 
     /**
      * Specify data which should be serialized to JSON
@@ -245,6 +250,7 @@ class User implements \JsonSerializable
             "active" => $this->isActive(),
             "lastUpdated" => $this->getLastUpdated()->format("Y-m-d H:i:s"),
             "timestamp" => $this->getTimestamp()->format("Y-m-d H:i:s"),
+            "full_name_ex" => $this->getFirstName() . " " . $this->getLastName() . " ( {$this->getUsername()} )"
         );
     }
 }
