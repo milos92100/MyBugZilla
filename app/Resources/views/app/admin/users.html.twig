@@ -19,7 +19,9 @@
             <td>{{ user.lastName }}</td>
             <td>{{ user.email }}</td>
             <td>
-                <button class="btn btn-danger" style="float: right; margin-right: 5px;">Deactivate</button>
+                <button class="status btn btn-{% if user.active %}danger{% else %}default{% endif %}"
+                        style="float: right; margin-right: 5px;">{% if user.active %}Deactivate{% else %}Activate{% endif %}
+                </button>
                 <button class="btn btn-warning" style="float: right; margin-right: 5px;">Add Ban</button>
                 <button class="btn btn-default" style="float: right; margin-right: 5px;">Edit</button>
             </td>
