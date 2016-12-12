@@ -1,0 +1,13 @@
+<doctrine-mapping>
+    <mapped-superclass name="AppBundle\Entity\Image">
+        <id name="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="content" type="blob" initial-value=""/>
+        <field name="size" type="integer" initial-value=""/>
+        <field name="timestamp" type="datetime" initial-value=""/>
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="beforePersist"/>
+        </lifecycle-callbacks>
+    </mapped-superclass>
+</doctrine-mapping>

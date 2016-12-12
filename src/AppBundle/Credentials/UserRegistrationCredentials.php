@@ -56,6 +56,28 @@ final class UserRegistrationCredentials extends Credentials
      */
     private $lastName;
 
+
+    /**
+     * $phone
+     *
+     * @var string
+     */
+    private $phone;
+
+    /**
+     * $workPosition
+     *
+     * @var string
+     */
+    private $workPosition;
+
+    /**
+     * $image
+     *
+     * @var string
+     */
+    private $image;
+
     /**
      * UserRegistrationCredentials constructor.
      *
@@ -65,10 +87,23 @@ final class UserRegistrationCredentials extends Credentials
      * @param string $email
      * @param string $firstName
      * @param string $lastName
+     * @param string $phone
+     * @param string $workPosition
+     * @param string $image
      * @throws PasswordsNotMatchingException
      * @throws EmailNotValidException
      */
-    public function __construct(string $username, string $password, string $repeatedPassword, string $email, string $firstName, string $lastName)
+    public function __construct(
+        string $username,
+        string $password,
+        string $repeatedPassword,
+        string $email,
+        string $firstName,
+        string $lastName,
+        string $phone,
+        string $workPosition,
+        string $image
+    )
     {
 
         $this->checkPasswords($password, $repeatedPassword);
@@ -90,6 +125,9 @@ final class UserRegistrationCredentials extends Credentials
         $this->email = $email;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->phone = $phone;
+        $this->workPosition = $workPosition;
+        $this->image = $image;
     }
 
     /**
@@ -152,6 +190,31 @@ final class UserRegistrationCredentials extends Credentials
     {
         return $this->firstName;
     }
+
+    /**
+     * @return string
+     */
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWorkPosition(): string
+    {
+        return $this->workPosition;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
 
     /**
      * @return string

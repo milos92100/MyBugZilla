@@ -61,6 +61,29 @@ class User implements \JsonSerializable
     private $lastName;
 
     /**
+     * $phone
+     *
+     * @var string
+     */
+    private $phone;
+
+    /**
+     *
+     * $workPosition
+     *
+     * @var string
+     */
+    private $workPosition;
+
+    /**
+     *
+     * $image
+     *
+     * @var UserImage
+     */
+    private $image;
+
+    /**
      * $active
      *
      * @var int
@@ -73,6 +96,7 @@ class User implements \JsonSerializable
      * @var UserRole
      */
     private $role;
+
 
     /**
      * $lastUpdated
@@ -88,6 +112,14 @@ class User implements \JsonSerializable
      */
     private $timestamp;
 
+
+    /**
+     * $base64ImageContent
+     *
+     * @var string
+     */
+    public $base64ImageContent = null;
+
     /**
      * User constructor.
      *
@@ -97,11 +129,24 @@ class User implements \JsonSerializable
      * @param string    $email
      * @param string    $firstName
      * @param string    $lastName
+     * @param string    $phone
+     * @param string    $workPosition
      * @param UserRole  $role
      * @param \DateTime $lastUpdated
      * @param \DateTime $timestamp
      */
-    public function __construct(int $id, string $username, string $password, string $email, string $firstName, string $lastName, UserRole $role, \DateTime $lastUpdated = null, \DateTime $timestamp = null)
+    public function __construct(
+        int $id,
+        string $username,
+        string $password,
+        string $email,
+        string $firstName,
+        string $lastName,
+        string $phone,
+        string $workPosition,
+        UserRole $role,
+        \DateTime $lastUpdated = null,
+        \DateTime $timestamp = null)
     {
         $this->id = $id;
         $this->username = $username;
@@ -109,8 +154,11 @@ class User implements \JsonSerializable
         $this->email = $email;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->phone = $phone;
+        $this->workPosition = $workPosition;
         $this->role = $role;
         $this->active = self::ACTIVE;
+
         if (null === $lastUpdated) {
             $lastUpdated = new \DateTime();
         }
@@ -124,11 +172,17 @@ class User implements \JsonSerializable
     }
 
 
+    /**
+     * This method is called before the object data is persisted by Doctrine
+     */
     public function beforePersist()
     {
         $this->timestamp = new \DateTime();
     }
 
+    /**
+     * This method is called before the object data is updated by Doctrine
+     */
     public function beforeUpdate()
     {
         $this->lastUpdated = new \DateTime();
@@ -193,6 +247,27 @@ class User implements \JsonSerializable
     }
 
     /**
+     * @return string
+     */
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWorkPosition(): string
+    {
+        return $this->workPosition;
+    }
+
+    public function getImage() : ?UserImage
+    {
+        return $this->image;
+    }
+
+    /**
      * @return UserRole
      */
     public function getRole()
@@ -224,9 +299,32 @@ class User implements \JsonSerializable
         return $this->active == self::ACTIVE;
     }
 
+    /**
+     * @return string
+     */
     public function getFullName():string
     {
         return $this->getFirstName() . " " . $this->getLastName();
+    }
+
+    /**
+     * Returns the image as base 64 content
+     *
+     * @return string | null
+     */
+    public function loadBase64Image()
+    {
+        if (null === $this->base64ImageContent) {
+
+            $image = $this->getImage();
+
+            if (null === $image) {
+                return null;
+            }
+            $this->base64ImageContent = $this->getImage()->getContentAsBase64();
+        }
+
+        return $this->base64ImageContent;
     }
 
 
@@ -246,6 +344,8 @@ class User implements \JsonSerializable
             "email" => $this->getEmail(),
             "firstName" => $this->getFirstName(),
             "lastName" => $this->getLastName(),
+            "phone" => $this->getPhone(),
+            "workPosition" => $this->getWorkPosition(),
             "role" => $this->getRole()->getId(),
             "active" => $this->isActive(),
             "lastUpdated" => $this->getLastUpdated()->format("Y-m-d H:i:s"),

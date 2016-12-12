@@ -1,7 +1,7 @@
 {% extends 'app/admin/admin.html.twig' %}
 {% block title %}Registration Page{% endblock %}
 {% block admin_stylesheets %}
-    {% stylesheets  'public/css/register.css' %}
+    {% stylesheets  'public/css/register.css' 'public/css/croppie.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
 {% endblock %}
@@ -63,6 +63,38 @@
                 </div>
             </div>
 
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Phone</label>
+                <div class="col-md-4">
+                    <input id="PhoneInput" name="textinput" type="text" placeholder="Phone"
+                           class="form-control input-md">
+                </div>
+            </div>
+
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Work position</label>
+                <div class="col-md-4">
+                    <input id="WorkPositionInput" name="textinput" type="text" placeholder="Work position"
+                           class="form-control input-md">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Image</label>
+                <div class="col-md-4">
+
+                    <input type="file" class="btn file-btn" onchange="previewFile()"><br>
+                    <div id="upload-demo" class="ready" style="height: 200px;"></div>
+
+                </div>
+            </div>
+
+            </br>
+            </br>
+
             <!-- Button (Double) -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="button1id">Action</label>
@@ -77,6 +109,7 @@
 {% endblock %}
 {% block admin_javasript %}
     {% javascripts
+    'public/js/lib/croppie.min.js'
     'public/js/add_user.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

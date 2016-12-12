@@ -10,7 +10,6 @@ use \Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Entity\User;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
-
 /**
  * Class UserRepository
  *
@@ -32,7 +31,7 @@ class UserRepository extends EntityRepository
 
     /**
      * @param int $id
-     * @return null|User
+     * @return null | User
      */
     public function findById(int $id)
     {
@@ -80,6 +79,9 @@ class UserRepository extends EntityRepository
     }
 
     /**
+     * This method returns all users that contain the given phrase in their
+     * first name,last name or username.
+     *
      * @param $str
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -91,11 +93,13 @@ class UserRepository extends EntityRepository
             ->orWhere(Criteria::expr()->contains("firstName", $str))
             ->orWhere(Criteria::expr()->contains("lastName", $str));
 
-
         return $this->matching($criteria);
     }
 
     /**
+     *
+     * This method will deactivate a user with the given id.
+     *
      * @param int $id
      * @return mixed
      */
@@ -105,6 +109,8 @@ class UserRepository extends EntityRepository
     }
 
     /**
+     *  This method will activate a user with the given id.
+     *
      * @param int $id
      * @return mixed
      */
@@ -114,6 +120,8 @@ class UserRepository extends EntityRepository
     }
 
     /**
+     * This method will set the active status of the user with the given id.
+     *
      * @param int $active
      * @param int $id
      * @return mixed

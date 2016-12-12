@@ -33,7 +33,6 @@ class UserRegistrationController extends BaseController
      */
     public function indexAction(Request $request)
     {
-
         return $this->renderMyView(':app:register.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..'),
         ]);
@@ -55,7 +54,10 @@ class UserRegistrationController extends BaseController
                 $request->request->get("repeatPassword"),
                 $request->request->get("email"),
                 $request->request->get("firstName"),
-                $request->request->get("lastName")
+                $request->request->get("lastName"),
+                $request->request->get("phone"),
+                $request->request->get("workPosition"),
+                $request->request->get("image")
             );
 
             $user = $this->getUserRegistrationService()->registerNewUser($credentials);

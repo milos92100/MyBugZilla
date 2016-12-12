@@ -8,6 +8,7 @@ use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+
 /**
  * Class BaseController
  *
@@ -30,6 +31,13 @@ class BaseController extends Controller
 
     }
 
+    protected function getDefaultProfileImage()
+    {
+        return base64_encode(
+            file_get_contents($this->get('kernel')->getRootDir() . '/../web/public/img/default_profile_image.png')
+        );
+    }
+
     /**
      * @param string        $view
      * @param array         $parameters
@@ -38,10 +46,27 @@ class BaseController extends Controller
      */
     protected function renderMyView($view, array $parameters = array(), Response $response = null)
     {
+        $user = $this->getLoggedUser();
+        $user_image = null;
+
+        if ($user !== null) {
+
+            $user = $this->getDoctrine()->getRepository(User::class)->find($user->getId());
+
+            $user_image = $user->loadBase64Image();
+            if ($user_image === null) {
+
+                $user_image = $this->getDefaultProfileImage();
+
+            }
+        }
+
+
         return parent::render($view,
             array_merge($parameters, [
                 "menu" => $this->getMenuItems($this->getLoggedUser()),
-                "user" => $this->getLoggedUser()
+                "user" => $user,
+                "user_image" => $user_image
             ]),
             $response);
     }

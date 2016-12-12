@@ -8,12 +8,15 @@
         <field name="email" type="string" initial-value=""/>
         <field name="firstName" type="string" initial-value=""/>
         <field name="lastName" type="string" initial-value=""/>
+        <field name="phone" type="string" initial-value=""/>
+        <field name="workPosition" type="string" initial-value=""/>
         <field name="lastUpdated" type="datetime" initial-value=""/>
         <field name="active" type="integer" initial-value="1"/>
         <field name="timestamp" type="datetime" initial-value=""/>
         <many-to-one field="role" target-entity="AppBundle\Entity\UserRole">
             <join-column name="user_role_id" referenced-column-name="id"/>
         </many-to-one>
+        <one-to-one field="image" target-entity="AppBundle\Entity\UserImage" mapped-by="user"/>
         <unique-constraints>
             <unique-constraint columns="username" name="usernameidx"/>
             <unique-constraint columns="email" name="emailidx"/>
@@ -22,6 +25,5 @@
             <lifecycle-callback type="prePersist" method="beforePersist"/>
             <lifecycle-callback type="postPersist" method="beforeUpdate"/>
         </lifecycle-callbacks>
-
     </entity>
 </doctrine-mapping>
