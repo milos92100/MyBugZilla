@@ -15,7 +15,7 @@ class User implements \JsonSerializable
     const PASSWORD_HASH_ALGORITHM = "sha512";
 
     const ACTIVE = 1;
-    const INACTIVE = 0;
+    //const INACTIVE = 0;
 
     /**
      * $id
@@ -170,7 +170,7 @@ class User implements \JsonSerializable
         }
         $this->timestamp = $timestamp;
 
-        
+
     }
 
 
