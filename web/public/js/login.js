@@ -3,7 +3,7 @@ console.log("login.js loaded");
 function login() {
 
 
-    var usernameInput = $('#inputUsername').val();
+    var usernameInput = $('#inputUsername').val()
     var passwordInput = $('#inputPassword').val();
 
     if (usernameInput == "" || usernameInput == null || usernameInput == undefined) {
