@@ -169,6 +169,8 @@ class User implements \JsonSerializable
             $timestamp = new \DateTime();
         }
         $this->timestamp = $timestamp;
+
+        
     }
 
 
