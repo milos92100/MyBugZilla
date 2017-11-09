@@ -51,10 +51,7 @@
     "post-update-cmd": [
       "@symfony-scripts"
     ],
-    "compile": [
-      "rm web/app_dev.php",
-      "php bin/console assetic:dump"
-    ]
+    "compile": []
   },
   "extra": {
     "symfony-app-dir": "app",
