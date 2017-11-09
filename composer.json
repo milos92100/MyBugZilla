@@ -53,7 +53,7 @@
     ],
     "compile": [
       "rm web/app_dev.php",
-      "php bin/console assetic:dump --no-debug"
+      "php bin/console assetic:dump"
     ]
   },
   "extra": {
