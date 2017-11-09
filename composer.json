@@ -44,9 +44,7 @@
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
     ],
-    "compile": [
-            "app/console assetic:dump"
-    ],
+   
     "post-install-cmd": [
       "@symfony-scripts"
     ],
